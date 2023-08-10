@@ -1,4 +1,5 @@
 <script>
+import axios from "axios";
 import { Text } from "vue";
 
 export default {
@@ -8,7 +9,7 @@ export default {
         {
           name: "首页",
           svg: "/首页.svg",
-          link: "/",
+          link: "/App",
         },
       ],
 
@@ -36,9 +37,7 @@ export default {
     <view class="caidantop">
       <span class="bt">lemon的个人网站</span>
       <ul>
-        <li v-for="page in pages">
-          <router-link :to="page.link"><img :src="page.svg" /></router-link>
-        </li>
+        <li v-for="page in pages"></li>
       </ul>
     </view>
     <img class="touxiang jiange gbyc" src="/头像.jpg" />

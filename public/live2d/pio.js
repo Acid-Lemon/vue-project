@@ -92,18 +92,7 @@ var Paul_Pio = function (prop) {
   var action = {
     // 欢迎
     welcome: function () {
-      if (
-        document.referrer !== "" &&
-        document.referrer.indexOf(current.root) === -1
-      ) {
-        var referrer = document.createElement("a");
-        referrer.href = document.referrer;
-        prop.content.referer
-          ? modules.render(
-              prop.content.referer.replace(/%t/, "“" + referrer.hostname + "”")
-            )
-          : modules.render("欢迎来自 “" + referrer.hostname + "” 的朋友！");
-      } else if (prop.tips) {
+      if (prop.tips) {
         var text,
           hour = new Date().getHours();
 
