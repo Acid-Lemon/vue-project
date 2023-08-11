@@ -28,14 +28,14 @@ export default {
 </script>
 
 <template>
-    <div class="shouping juzhong" style="height: 100vh">
+    <div class="shouping juzhong">
         <div class="caidantop">
             <span class="bt">lemon的个人网站</span>
-            <ul>
-                <li v-for="page in pages">
+            <div>
+                <div v-for="page in pages">
                     <router-link :to="page.link"><img :src="page.svg"/></router-link>
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
         <img class="touxiang jiange gbyc" src="/头像.jpg"/>
         <p class="jiange gbyc">Hello!欢迎来到lemon的个人网站~</p>
