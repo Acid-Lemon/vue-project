@@ -22,18 +22,20 @@ export default {
 <template>
   <div class="caidantop">
     <span class="bt">lemon的个人网站</span>
-    <ul>
-      <li v-for="page in pages">
-        <router-link :to="page.link"
-          ><img :src="page.svg" class="lie"
-        /></router-link>
-      </li>
-    </ul>
+    <div class="ym">
+      <div v-for="page in pages" class="lie">
+        <router-link :to="page.link">
+          <img :src="page.svg" class="tb" />
+          <span>{{ page.name }}</span>
+        </router-link>
+      </div>
+    </div>
   </div>
   <RouterView />
 </template>
 
-<style>
+<style scoped>
+@import "/text/text.css";
 .caidantop {
   position: fixed;
   top: 2.5%;
@@ -59,21 +61,21 @@ export default {
 }
 
 .lie {
+  margin: 10px;
+}
+
+.tb {
   width: 30px;
 }
 
-li {
-  list-style: none;
-  display: inline;
+.ym {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
-</style>
 
-<script>
-</script>
-
-<template>
-    <RouterView />
-</template>
-
-<style>
+* {
+  caret-color: transparent;
+}
 </style>
