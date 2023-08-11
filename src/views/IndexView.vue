@@ -1,154 +1,269 @@
 <script>
 export default {
-    data() {
-        return {
-            pages: [
-                {
-                    name: "首页",
-                    svg: "/首页.svg",
-                    link: "/",
-                },
-            ],
-
-            contacts: [
-                {
-                    name: "QQ",
-                    svg: "/QQ.svg",
-                    link: "https://wpa.qq.com/msgrd?v=3&uin=3573045100&site=qq&menu=yes",
-                },
-                {
-                    name: "bilibili",
-                    svg: "/哔哩哔哩.svg",
-                    link: "https://space.bilibili.com/400932209",
-                },
-            ],
-        };
-    }
-}
+  data() {
+    return {
+      contacts: [
+        {
+          name: "QQ",
+          svg: "/svg/QQ.svg",
+          link: "https://wpa.qq.com/msgrd?v=3&uin=3573045100&site=qq&menu=yes",
+        },
+        {
+          name: "bilibili",
+          svg: "/svg/哔哩哔哩.svg",
+          link: "https://space.bilibili.com/400932209",
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <template>
-    <div class="shouping juzhong">
-        <div class="caidantop">
-            <span class="bt">lemon的个人网站</span>
-            <ul>
-                <li v-for="page in pages">
-                    <router-link :to="page.link"><img :src="page.svg"/></router-link>
-                </li>
-            </ul>
-        </div>
-        <img class="touxiang jiange gbyc" src="/头像.jpg"/>
-        <p class="jiange gbyc">Hello!欢迎来到lemon的个人网站~</p>
-        <ul class="jiange gbyc">
-            <li v-for="contact in contacts" class="jiange">
-                <a :href="contact.link" target="_blank">
-                    <img class="lie" :title="contact.name" :src="contact.svg"/>
-                </a>
-            </li>
-        </ul>
+  <div class="shouping juzhong">
+    <img class="touxiang jiange gbyc" src="/头像.jpg" />
+    <p class="jiange gbyc">Hello!欢迎来到lemon的个人网站~</p>
+    <ul class="jiange gbyc">
+      <li v-for="contact in contacts" class="jiange">
+        <a :href="contact.link" target="_blank">
+          <img class="lie" :title="contact.name" :src="contact.svg" />
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="houmian juzhong">
+    <div class="gdtext juzhong"></div>
+    <div class="jiewei juzhong">
+      <bq>Copyright © 2023 lemon的个人网站</bq>
     </div>
-    <div class="houmian juzhong">
-        <div class="gdtext juzhong"></div>
-        <div class="jiewei juzhong">
-            <bq>Copyright © 2023 lemon的个人网站</bq>
-        </div>
-    </div>
+  </div>
 </template>
 
 <style scoped>
 @import "/text/text.css";
 
 .shouping {
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-}
-
-.caidantop {
-    position: fixed;
-    top: 2.5%;
-    left: 2.5%;
-    width: 95%;
-    height: 75px;
-    background-color: rgba(255, 255, 255, 0);
-    border-radius: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.6s;
-}
-
-.caidantop:hover {
-    background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
 }
 
 .touxiang {
-    width: 130px;
-    border-radius: 65px;
-    transform: rotate(0);
-    transition: all 0.6s;
+  width: 130px;
+  border-radius: 65px;
+  transform: rotate(0);
+  transition: all 0.6s;
 }
 
 .touxiang:hover {
-    transform: rotate(360deg);
+  transform: rotate(360deg);
 }
 
 .jiange {
-    margin: 10px;
+  margin: 10px;
 }
 
 p {
-    font-family: SYST;
-    color: #000000;
-    transition: all 0.6s;
+  font-family: SYST;
+  color: #000000;
+  transition: all 0.6s;
 }
 
 p:hover {
-    color: #44cef6;
+  color: #44cef6;
 }
 
 .lie {
-    width: 30px;
+  width: 30px;
 }
 
 li {
-    list-style: none;
-    display: inline;
+  list-style: none;
+  display: inline;
 }
 
 .gbyc {
-    caret-color: transparent;
+  caret-color: transparent;
 }
 
 bq {
-    color: #d3d3d3;
+  color: #d3d3d3;
 }
 
 .juzhong {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .jiewei {
-    width: 100%;
-    height: 75px;
+  width: 100%;
+  height: 75px;
 }
 
 .gdtext {
-    width: 95%;
-    height: 50px;
-    flex-direction: row;
-    border: 1px solid #000000;
+  width: 95%;
+  height: 50px;
+  flex-direction: row;
+  border: 1px solid #000000;
 }
 
 .houmian {
-    flex-direction: column;
+  flex-direction: column;
+}
+</style>
+
+<script>
+export default {
+  data() {
+    return {
+      pages: [
+        {
+          name: "首页",
+          svg: "/首页.svg",
+          link: "/",
+        },
+      ],
+
+      contacts: [
+        {
+          name: "QQ",
+          svg: "/QQ.svg",
+          link: "https://wpa.qq.com/msgrd?v=3&uin=3573045100&site=qq&menu=yes",
+        },
+        {
+          name: "bilibili",
+          svg: "/哔哩哔哩.svg",
+          link: "https://space.bilibili.com/400932209",
+        },
+      ],
+    };
+  },
+};
+</script>
+
+<template>
+  <div class="shouping juzhong">
+    <div class="caidantop">
+      <span class="bt">lemon的个人网站</span>
+      <ul>
+        <li v-for="page in pages">
+          <router-link :to="page.link"><img :src="page.svg" /></router-link>
+        </li>
+      </ul>
+    </div>
+    <img class="touxiang jiange gbyc" src="/头像.jpg" />
+    <p class="jiange gbyc">Hello!欢迎来到lemon的个人网站~</p>
+    <ul class="jiange gbyc">
+      <li v-for="contact in contacts" class="jiange">
+        <a :href="contact.link" target="_blank">
+          <img class="lie" :title="contact.name" :src="contact.svg" />
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="houmian juzhong">
+    <div class="gdtext juzhong"></div>
+    <div class="jiewei juzhong">
+      <bq>Copyright © 2023 lemon的个人网站</bq>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+@import "/text/text.css";
+
+.shouping {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+}
+
+.caidantop {
+  position: fixed;
+  top: 2.5%;
+  left: 2.5%;
+  width: 95%;
+  height: 75px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.6s;
+}
+
+.caidantop:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.touxiang {
+  width: 130px;
+  border-radius: 65px;
+  transform: rotate(0);
+  transition: all 0.6s;
+}
+
+.touxiang:hover {
+  transform: rotate(360deg);
+}
+
+.jiange {
+  margin: 10px;
+}
+
+p {
+  font-family: SYST;
+  color: #000000;
+  transition: all 0.6s;
+}
+
+p:hover {
+  color: #44cef6;
+}
+
+.lie {
+  width: 30px;
+}
+
+li {
+  list-style: none;
+  display: inline;
+}
+
+.gbyc {
+  caret-color: transparent;
+}
+
+bq {
+  color: #d3d3d3;
+}
+
+.juzhong {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.jiewei {
+  width: 100%;
+  height: 75px;
+}
+
+.gdtext {
+  width: 95%;
+  height: 50px;
+  flex-direction: row;
+  border: 1px solid #000000;
+}
+
+.houmian {
+  flex-direction: column;
 }
 
 .bt {
-    font-family: ZKXW;
-    font-size: 25px;
+  font-family: ZKXW;
+  font-size: 25px;
 }
 </style>
