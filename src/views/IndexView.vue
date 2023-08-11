@@ -28,7 +28,7 @@ export default {
 </script>
 
 <template>
-    <div class="shouping juzhong" style="height: 100vh">
+    <div class="shouping juzhong">
         <div class="caidantop">
             <span class="bt">lemon的个人网站</span>
             <ul>
