@@ -31,11 +31,11 @@ export default {
     <div class="shouping juzhong">
         <div class="caidantop">
             <span class="bt">lemon的个人网站</span>
-            <div>
-                <div v-for="page in pages">
+            <ul>
+                <li v-for="page in pages">
                     <router-link :to="page.link"><img :src="page.svg"/></router-link>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
         <img class="touxiang jiange gbyc" src="/头像.jpg"/>
         <p class="jiange gbyc">Hello!欢迎来到lemon的个人网站~</p>
