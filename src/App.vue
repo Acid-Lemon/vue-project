@@ -60,6 +60,15 @@ export default {
   font-size: 25px;
 }
 
+span {
+  color: #000000;
+  transition: all 0.6s;
+}
+
+span:hover {
+  color: #44cef6;
+}
+
 .lie {
   margin: 10px;
 }
