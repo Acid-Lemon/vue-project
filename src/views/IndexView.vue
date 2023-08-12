@@ -40,8 +40,6 @@ export default {
 </template>
 
 <style scoped>
-@import "/text/text.css";
-
 .shouping {
   width: 100%;
   height: 100%;

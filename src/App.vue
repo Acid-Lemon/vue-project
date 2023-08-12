@@ -24,7 +24,7 @@ export default {
     <span class="bt">lemon的个人网站</span>
     <div class="ym">
       <div v-for="page in pages" class="lie">
-        <router-link :to="page.link">
+        <router-link :to="page.link" class="link">
           <img :src="page.svg" class="tb" />
           <span>{{ page.name }}</span>
         </router-link>
@@ -34,8 +34,17 @@ export default {
   <RouterView />
 </template>
 
-<style scoped>
+
+<style>
 @import "/text/text.css";
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+</style>
+
+<style scoped>
 .caidantop {
   position: fixed;
   top: 2.5%;
@@ -61,7 +70,6 @@ export default {
 }
 
 span {
-  color: #000000;
   transition: all 0.6s;
 }
 
@@ -71,6 +79,12 @@ span:hover {
 
 .lie {
   margin: 10px;
+}
+
+.link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .tb {
