@@ -10,8 +10,6 @@ export default {
 
 <template></template>
 <style scoped>
-@import "/text/text.css";
-
 * {
   caret-color: transparent;
 }
