@@ -63,11 +63,7 @@ export default {
 
 .wzbj {
   position: relative;
-  top: -15px;
+  top: -18px;
   background-color: #ffffff;
-}
-
-* {
-  caret-color: transparent;
 }
 </style>

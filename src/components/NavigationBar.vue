@@ -89,10 +89,6 @@ span:hover {
   align-items: center;
 }
 
-* {
-  caret-color: transparent;
-}
-
 img,
 span {
   margin: 3px;
