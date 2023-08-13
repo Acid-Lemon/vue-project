@@ -33,10 +33,14 @@ export default {
           <img src="/头像.jpg" class="tx" />
           <div class="nc">
             <p>lemon</p>
-            <p>发布于xxxx年xx月xx日 xx:xx</p>
+            <p class="fbxx">发布于xxxx年xx月xx日 xx:xx</p>
           </div>
         </div>
+        <p class="plnr">这是一条评论.</p>
       </div>
+    </div>
+    <div class="wpl pl">
+      <input class="plk" />
     </div>
   </div>
 </template>
@@ -129,20 +133,45 @@ export default {
 
 .pl {
   width: 70%;
-  height: 200px;
-  border: 1px solid #000000;
+  border-radius: 20px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
 }
 
 .tx {
   width: 40px;
   height: 40px;
   margin-right: 10px;
+  border-radius: 20px;
 }
 
 .wz {
   display: flex;
   flex-direction: row;
   width: 100%;
-  margin: 10px;
+  margin: 20px;
+}
+
+.plnr {
+  margin: 20px;
+}
+
+.fbxx {
+  font-size: 13px;
+}
+
+.wpl {
+  margin-top: 20px;
+}
+
+.plk {
+  width: calc(100% - 45px);
+  height: 150px;
+  margin: 20px;
+}
+
+input {
+  caret-color: auto;
+  border: 1px solid #000000;
 }
 </style>

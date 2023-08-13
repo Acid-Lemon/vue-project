@@ -9,9 +9,9 @@ const router = createRouter({
       component: () => import("@/views/IndexView.vue"),
     },
     {
-      path: "/message",
-      name: "message",
-      component: () => import("@/views/MessageView.vue"),
+      path: "/comment",
+      name: "comment",
+      component: () => import("@/views/CommentView.vue"),
     },
   ],
 });
