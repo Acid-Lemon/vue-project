@@ -33,9 +33,6 @@ export default {
   </div>
   <div class="shu juzhong">
     <div class="gdtext juzhong heng"></div>
-    <div class="jiewei juzhong">
-      <bq>Copyright © 2023 lemon的个人网站</bq>
-    </div>
   </div>
 </template>
 
@@ -82,23 +79,10 @@ p:hover {
   width: 30px;
 }
 
-* {
-  caret-color: transparent;
-}
-
-bq {
-  color: #d3d3d3;
-}
-
 .juzhong {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.jiewei {
-  width: 100%;
-  height: 75px;
 }
 
 .gdtext {
