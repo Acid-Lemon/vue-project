@@ -12,7 +12,7 @@ export default {
 
 <template>
   <NavigationBar></NavigationBar>
-  <RouterView />
+  <RouterView></RouterView>
   <Copyright></Copyright>
 </template>
 

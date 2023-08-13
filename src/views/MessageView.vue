@@ -44,8 +44,8 @@ export default {
 .background {
   width: 100%;
   aspect-ratio: 10 / 3;
-  background: url("/background/11.jpg") no-repeat;
-  flex-direction: row;
+  background: url("/background/11.jpg");
+  background-size: cover;
 }
 
 .juzhong {
