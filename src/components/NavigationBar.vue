@@ -14,6 +14,11 @@ export default {
           svg: "/svg/留言板.svg",
           link: "/comment",
         },
+        {
+          name: "登录",
+          svg: "/svg/登录.svg",
+          link: "/login",
+        },
       ],
     };
   },
