@@ -1,0 +1,16 @@
+{
+  "redirects": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api",
+      "destination": "/api/index"
+    }
+  ]
+}
+
