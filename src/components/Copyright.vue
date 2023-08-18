@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "Copyright"
+  name: "Copyright",
 };
 </script>
 

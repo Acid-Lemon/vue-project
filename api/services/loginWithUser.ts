@@ -1,8 +1,18 @@
 import * as bcrypt from "bcryptjs";
 import * as jwt from "jsonwebtoken";
+
 import {PrismaClient} from "@prisma/client";
 
-module.exports = async (args: any, prisma: PrismaClient, uid: number, ctx: any) => {
+import {User} from "@prisma/client";
+import {Context} from "../types";
+
+type LoginArgs = {
+    username: string;
+    password: string;
+    type: string;
+}
+
+module.exports = async (args: LoginArgs, prisma: PrismaClient, uid: number, ctx: Context) => {
     let {
         username,
         password,
@@ -29,8 +39,8 @@ module.exports = async (args: any, prisma: PrismaClient, uid: number, ctx: any) 
             token
         };
     } else if (type === "register") {
-        let create_res = await prisma.$transaction(async (tx) => {
-            let user: any = await tx.user.findUnique({
+        let create_res: User = await prisma.$transaction(async (tx) => {
+            let user: User = await tx.user.findUnique({
                 where: {
                     name: username
                 }
