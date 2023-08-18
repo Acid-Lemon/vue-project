@@ -12,7 +12,7 @@ export default {
         {
           name: "留言板",
           svg: "/svg/留言板.svg",
-          link: "/message",
+          link: "/comment",
         },
       ],
     };
