@@ -12,7 +12,7 @@ let files: string[] = fs.readdirSync(__dirname + "/services");
 let functions: Map<string, Function> = new Map();
 files.map(async (filename: string) => {
     console.log(filename);
-    let name: string = filename.replace(/.js/, "");
+    let name: string = filename.replace(".js", "");
     let {default: module} = await import("./services/" + filename);
     functions.set(name, module);
 });
