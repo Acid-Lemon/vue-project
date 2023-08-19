@@ -1,9 +1,9 @@
 <template>
-  <view class="box">
-    <view class="content">
+  <div class="box">
+    <div class="content">
       <span class="title">登录</span>
-      <view class="username form-item">
-        <span>用户名</span>
+      <div class="username form-item">
+        <span class="br">用户名：</span>
         <input
           type="text"
           class="input-item"
@@ -11,9 +11,9 @@
           placeholder-style="color:red"
           :placeholder="username_tip"
         />
-      </view>
-      <view class="password form-item">
-        <span>密码</span>
+      </div>
+      <div class="password form-item">
+        <span class="br">密码：</span>
         <input
           type="password"
           class="input-item"
@@ -21,9 +21,9 @@
           placeholder-style="color:red"
           :placeholder="password_tip"
         />
-      </view>
-      <view class="confirm_password form-item" v-show="state === 'register'">
-        <span>确认密码</span>
+      </div>
+      <div class="confirm_password form-item" v-show="state === 'register'">
+        <span class="br">确认密码：</span>
         <input
           type="password"
           class="input-item"
@@ -31,13 +31,13 @@
           placeholder-style="color:red"
           :placeholder="confirm_password_tip"
         />
-      </view>
+      </div>
       <button class="login-btn" @click="login">{{ ButtonName }}</button>
-      <view class="register" v-show="state === 'login'">
+      <div class="register" v-show="state === 'login'">
         <span class="blue" @click="register">还没有账号？点击注册</span>
-      </view>
-    </view>
-  </view>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -138,7 +138,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px;
+  padding: 30px;
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -148,15 +148,47 @@ export default {
 }
 
 .input-item {
-  border-bottom: solid 1px;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid #000000;
+  flex: 1;
+  font-size: 20px;
+}
+
+.input-item:focus {
+  outline: none;
+  caret-color: auto;
+}
+
+.form-item {
+  display: flex;
 }
 
 .login-btn {
   width: 100%;
+  height: 40px;
 }
 
-span {
-  width: 50px;
+.br {
+  text-align: center;
+  width: 100px;
+  font-size: 20px;
+}
+
+.blue {
+  color: #000000;
+  transition: all 0.6s;
+}
+
+.blue:hover {
+  color: #44cef6;
+}
+
+.register {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 30px;
 }
 
 @media screen and (max-width: 700px) {
