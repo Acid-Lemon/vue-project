@@ -32,7 +32,7 @@ let files = fs.readdirSync(__dirname + "/services");
 let functions = new Map();
 files.map(async (filename) => {
     console.log(filename);
-    let name = filename.replace(/.js/, "");
+    let name = filename.replace(".js", "");
     let { default: module } = await Promise.resolve(`${"./services/" + filename}`).then(s => __importStar(require(s)));
     functions.set(name, module);
 });
