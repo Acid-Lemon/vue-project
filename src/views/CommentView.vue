@@ -3,9 +3,25 @@ import axios from "axios";
 
 export default {
   data() {
-    return {};
+    return {
+      tx: "",
+      isfocu: false,
+      value: "",
+    };
   },
-  mounted() {},
+  methods: {
+    focu() {
+      this.isfocu = true;
+    },
+
+    blur() {
+      if (this.value === "") {
+        this.isfocu = false;
+      } else {
+        this.isfocu = true;
+      }
+    },
+  },
 };
 </script>
 
@@ -40,7 +56,15 @@ export default {
       </div>
     </div>
     <div class="wpl pl">
-      <input class="plk" />
+      <p id="ph" class="ph" :class="{ focu: isfocu, blur: !isfocu }">
+        你是我一生只会遇见一次的惊喜...
+      </p>
+      <textarea v-model="value" @focus="focu" @blur="blur" />
+      <div>
+        <img :src="tx" />
+        <input />
+        <input />
+      </div>
     </div>
   </div>
 </template>
@@ -162,16 +186,43 @@ export default {
 
 .wpl {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.plk {
-  width: calc(100% - 45px);
-  height: 150px;
-  margin: 20px;
-}
-
-input {
+textarea {
   caret-color: auto;
   border: 1px solid #000000;
+  resize: vertical;
+  min-height: 100px;
+  max-height: 400px;
+  height: 200px;
+  outline: none;
+  padding: 15px;
+  font-size: 18px;
+  width: calc(100% - 70px);
+}
+
+.ph {
+  position: relative;
+  pointer-events: none;
+  transition: all 0.6s;
+}
+
+.focu {
+  left: calc(130px - 50%);
+  top: 8px;
+  color: #ffffff;
+  font-size: 13px;
+  background-color: #000000;
+}
+
+.blur {
+  left: calc(145px - 50%);
+  top: 30px;
+  color: #000000;
+  font-size: 15px;
+  background-color: #ffffff;
 }
 </style>
