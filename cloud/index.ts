@@ -9,19 +9,18 @@ import {JwtPayload} from "jsonwebtoken";
 const env: NodeJS.ProcessEnv = process.env;
 
 let files: string[] = fs.readdirSync(__dirname + "/services");
-let functions: object = {};
+let functions: Map<string, Function> = new Map();
 files.map(async (filename: string) => {
-    let name: string = filename.replace(".ts", "");
-    let {default: module} = await import("./services/" + filename)
-    Object.defineProperty(functions, name, {
-        value: module
-    });
+    console.log(filename);
+    let name: string = filename.replace(".js", "");
+    let {default: module} = await import("./services/" + filename);
+    functions.set(name, module);
 });
 
 exports.default = async (req: VercelRequest, res: VercelResponse) => {
     try {
-        if (req.method.toLowerCase() !== "post") {
-            throw new Error("method not supported. please use post method.");
+        if (req.method?.toLowerCase() !== "post") {
+            throw new Error("method not supported. please use the post method.");
         }
 
         if (typeof(req.body) === "string") {
@@ -34,8 +33,8 @@ exports.default = async (req: VercelRequest, res: VercelResponse) => {
             token
         } = req.body ? req.body : req;
 
-        console.log(typeof functions[api], functions[api])
-        if (typeof functions[api] !== "function") {
+        let func: Function = <Function>functions.get(api);
+        if (typeof func !== "function") {
             throw new Error("no api");
         }
 
@@ -43,11 +42,11 @@ exports.default = async (req: VercelRequest, res: VercelResponse) => {
         if (!token && !api.startsWith("login")) {
             throw new Error("please login first.")
         } else if (token) {
-            auth = <JwtPayload>jwt.verify(token.replace("Bearer ", ""), env["ADMIN_SECRET"])
+            auth = <JwtPayload>jwt.verify(token.replace("Bearer ", ""), <string>env["ADMIN_SECRET"])
         }
 
         let prisma: PrismaClient = new PrismaClient();
-        let data: Object = await functions[api](args, prisma, auth["id"], {
+        let data: Object = await func(args, prisma, auth["id"], {
             auth,
             env
         });
@@ -57,7 +56,7 @@ exports.default = async (req: VercelRequest, res: VercelResponse) => {
             success: true,
             data
         })
-    } catch (err) {
+    } catch (err: any) {
         console.error("error: ", err);
         res.status(StatusCodes.OK).json({
             success: false,
