@@ -10,7 +10,7 @@ function exec(str) {
         } finally {
             resolve();
         }
-    })
+    });
 }
 
 async function main() {
@@ -35,9 +35,8 @@ async function main() {
     console.log("tsconfig.json files:", tsconfig_files);
     for (let file of tsconfig_files) {
         await exec(`tsc -p ${file}`);
-        console.log(`tsc build ${file}: success`);
+        console.log(`tsc build success. ${file}`);
     }
 }
-
 
 main().then()
