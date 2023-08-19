@@ -22,7 +22,7 @@ module.exports = async (args: LoginArgs, prisma: PrismaClient, uid: number, ctx:
     password.trim();
     check_info(username, password);
     if (type === "login") {
-        let user: any = await prisma.user.findUniqueOrThrow({
+        let user: User = await prisma.user.findUniqueOrThrow({
             where: {
                 name: username
             }
@@ -33,14 +33,14 @@ module.exports = async (args: LoginArgs, prisma: PrismaClient, uid: number, ctx:
             throw new Error("Invalid password");
         }
 
-        let token: string = "Bearer " + jwt.sign({user_id: uid}, ctx.env["ADMIN_SECRET"]);
+        let token: string = "Bearer " + jwt.sign({user_id: uid}, <string>ctx.env["ADMIN_SECRET"]);
         return {
             user,
             token
         };
     } else if (type === "register") {
         let create_res: User = await prisma.$transaction(async (tx) => {
-            let user: User = await tx.user.findUnique({
+            let user: User|null = await tx.user.findUnique({
                 where: {
                     name: username
                 }
@@ -62,7 +62,7 @@ module.exports = async (args: LoginArgs, prisma: PrismaClient, uid: number, ctx:
 
         return {
             user: create_res,
-            token: "Bearer " + jwt.sign({user_id: create_res.id}, ctx.env["ADMIN_SECRET"])
+            token: "Bearer " + jwt.sign({user_id: create_res.id}, <string>ctx.env["ADMIN_SECRET"])
         }
     } else {
         throw new Error("invalid type");
