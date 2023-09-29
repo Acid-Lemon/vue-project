@@ -6,7 +6,7 @@ export default {
 
 <template>
   <div class="jiewei juzhong">
-    <bq>Copyright © 2023 lemon的个人网站</bq>
+    <p>Copyright © 2023 lemon的个人网站</p>
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
   height: 75px;
 }
 
-bq {
+p {
   color: #d3d3d3;
 }
 </style>

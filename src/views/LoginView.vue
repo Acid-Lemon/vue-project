@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import { call_api } from "@/utils/cloud.js";
+
 export default {
   data() {
     return {
@@ -61,63 +63,21 @@ export default {
       this.ButtonName = "注册";
     },
     login() {
-      let username = this.username;
-      let password = this.password;
-      let confirm_password = this.confirm_password;
-      uniCloud
-        .callFunction({
-          name: "fun",
-          data: {
-            api: state,
-            args: {
-              username,
-              password,
-              confirm_password,
-            },
-          },
-        })
-        .then(({ result }) => {
-          if (result.success === false) {
-            if (result.api === "login") {
-              if (result.errorMessage === "此账户不存在") {
-                this.username = "";
-                this.username_tip = result.errorMessage;
-              }
-              if (result.errorMessage === "密码错误") {
-                this.password = "";
-                this.password_tip = result.errorMessage;
-              }
-            }
-            if (result.api === "register") {
-              if (result.errorMessage === "当前用户名重复") {
-                this.username = "";
-                this.username_tip = result.errorMessage;
-              }
-              if (result.errorMessage === "用户名不符合规范") {
-                this.username = "";
-                this.username_tip = result.errorMessage;
-              }
-              if (result.errorMessage === "密码不符合规范") {
-                this.password = "";
-                this.confirm_password = "";
-                this.password_tip = result.errorMessage;
-              }
-              if (result.errorMessage === "前后密码不一致") {
-                this.password = "";
-                this.confirm_password = "";
-                this.confirm_password_tip = result.errorMessage;
-              }
-            }
-          } else {
-            if (result.api === "login") {
-              console.log("登录成功");
-            }
-            if (result.api === "register") {
-              console.log("注册成功");
-              location.reload();
-            }
-          }
-        });
+      if (this.state === "register") {
+        if (this.password !== this.confirm_password) {
+          this.password = "";
+          this.confirm_password_tip = "前后密码不一致";
+          return;
+        }
+      }
+      call_api("loginWithUser", {
+        username: this.username,
+        password: this.password,
+        type: this.state,
+      }).then((res) => {
+        if (res.success === true) {
+        }
+      });
     },
   },
 };
