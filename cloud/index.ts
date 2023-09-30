@@ -42,7 +42,7 @@ exports.default = async (req: VercelRequest, res: VercelResponse) => {
         if (!token && !api.startsWith("login")) {
             throw new Error("please login first.")
         } else if (token) {
-            auth = <JwtPayload>jwt.verify(token.replace("Bearer ", ""), <string>env["ADMIN_SECRET"])
+            auth = <JwtPayload>jwt.verify(token.replace("Bearer ", ""), <string>env["ADMIN_SECRET"]);
         }
 
         let prisma: PrismaClient = new PrismaClient();
@@ -55,7 +55,7 @@ exports.default = async (req: VercelRequest, res: VercelResponse) => {
         res.status(StatusCodes.OK).json({
             success: true,
             data
-        })
+        });
     } catch (err: any) {
         console.error("error: ", err);
         res.status(StatusCodes.OK).json({

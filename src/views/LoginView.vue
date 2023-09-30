@@ -32,7 +32,7 @@
           :placeholder="confirm_password_tip"
         />
       </div>
-      <button class="login-btn" @click="login">{{ ButtonName }}</button>
+      <button class="login-btn" @click="login">{{ button_name }}</button>
       <div class="register" v-show="state === 'login'">
         <span class="blue" @click="register">还没有账号？点击注册</span>
       </div>
@@ -42,11 +42,12 @@
 
 <script>
 import { call_api } from "@/utils/cloud.js";
+import {ElLoading, ElMessageBox} from "element-plus";
 
 export default {
   data() {
     return {
-      ButtonName: "登录",
+      button_name: "登录",
       username: "",
       password: "",
       confirm_password: "",
@@ -60,9 +61,27 @@ export default {
   methods: {
     register() {
       this.state = "register";
-      this.ButtonName = "注册";
+      this.button_name = "注册";
+    },
+    check() {
+      if (this.username.length < 1 || this.username.length > 15) {
+        this.username_tip = "用户名不符合要求";
+        return false;
+      }
+
+      if (this.password.length < 5 || this.password.length > 25) {
+        this.password_tip = "密码不符合要求";
+        this.confirm_password = "";
+        return false;
+      }
+
+      return true;
     },
     login() {
+      if (!this.check()) {
+          return;
+      }
+
       if (this.state === "register") {
         if (this.password !== this.confirm_password) {
           this.password = "";
@@ -70,13 +89,42 @@ export default {
           return;
         }
       }
+
+      let loading = ElLoading.service();
       call_api("loginWithUser", {
         username: this.username,
         password: this.password,
         type: this.state,
       }).then((res) => {
-        if (res.success === true) {
+        loading.close();
+
+        if (res.success === false) {
+            // 显示错误
+            ElMessageBox({
+                type: "error",
+                message: res.error_message,
+                confirmButtonText: "确定",
+                autofocus: false
+            });
+
+            if (res.api_call_success) {
+                this.username = "";
+                this.password = "";
+                this.confirm_password = "";
+            }
+
+            return;
         }
+
+        ElMessageBox({
+            type: "success",
+            message: "登录成功",
+            showCancelButton: false,
+            confirmButtonText: "确定",
+            callback: () => {
+                this.$router.back();
+            }
+        }).catch();
       });
     },
   },
