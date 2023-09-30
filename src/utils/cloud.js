@@ -7,7 +7,10 @@ async function call_api(name, args) {
         args,
         token
     }).then(res => {
-        let api_res = res.data;
+        let api_res = {
+            ...res.data,
+            api_call_success: true
+        };
         if (api_res.success && api_res.data.hasOwnProperty("token")) {
             localStorage.setItem('token', api_res.data.token);
         }
@@ -16,6 +19,7 @@ async function call_api(name, args) {
         console.log("error:", err);
         return {
             success: false,
+            api_call_success: false,
             error_message: err.message
         };
     });

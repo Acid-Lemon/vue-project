@@ -22,15 +22,19 @@ module.exports = async (args: LoginArgs, prisma: PrismaClient, uid: number, ctx:
     password.trim();
     check_info(username, password);
     if (type === "login") {
-        let user: User = await prisma.user.findUniqueOrThrow({
+        let user: User|null = await prisma.user.findUnique({
             where: {
                 name: username
-            }
+            },
         });
+
+        if (!user) {
+            throw new Error("用户不存在");
+        }
 
         let match: boolean = await bcrypt.compare(password, user.hash);
         if (!match) {
-            throw new Error("Invalid password");
+            throw new Error("密码错误");
         }
 
         let token: string = "Bearer " + jwt.sign({user_id: uid}, <string>ctx.env["ADMIN_SECRET"]);
@@ -47,7 +51,7 @@ module.exports = async (args: LoginArgs, prisma: PrismaClient, uid: number, ctx:
             });
 
             if (user) {
-                throw new Error("user exists");
+                throw new Error("用户已存在");
             }
 
             let hash: string = await bcrypt.hash(password, 10);
@@ -65,16 +69,16 @@ module.exports = async (args: LoginArgs, prisma: PrismaClient, uid: number, ctx:
             token: "Bearer " + jwt.sign({user_id: create_res.id}, <string>ctx.env["ADMIN_SECRET"])
         }
     } else {
-        throw new Error("invalid type");
+        throw new Error("invalid login type");
     }
 }
 
 function check_info(username: string, password: string) {
     if (username.length < 1 || username.length > 15) {
-        throw Error("invalid username");
+        throw Error("用户名不符合要求");
     }
 
     if (password.length < 5 || password.length > 25) {
-        throw Error("invalid password");
+        throw Error("密码不符合要求");
     }
 }
