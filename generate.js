@@ -1,5 +1,5 @@
 const { execSync } = require('child_process');
-const {glob} = require('glob')
+const { glob } = require('glob');
 
 function exec(str) {
     return new Promise((resolve) => {
