@@ -6,6 +6,7 @@ function exec(str) {
         try {
             execSync(str, { stdio: 'inherit' });
         } catch (err) {
+            console.log("error:", err);
             process.exit(1);
         } finally {
             resolve();
