@@ -33,6 +33,7 @@ async function main() {
 
         return 1;
     });
+
     console.log("tsconfig.json files:", tsconfig_files);
     for (let file of tsconfig_files) {
         await exec(`tsc -p ${file}`);
